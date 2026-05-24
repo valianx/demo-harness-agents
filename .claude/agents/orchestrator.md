@@ -53,9 +53,9 @@ You MUST wait for each Task to finish and read its result before proceeding.
 - Read `worklog/{task-name}/01-plan.md` to get the task list.
 - For each unchecked task (`- [ ]`), follow this sequence:
 
-  **Step 0 — Ask for confirmation:**
-  - Show the user which task is next (e.g., "Next task: Task 1/3 — {description}").
-  - Ask the user for confirmation to proceed. **Do NOT dispatch the implementer until the user says yes.**
+  **Step 0 — Ask for confirmation (skip for the first task):**
+  - For the **first task only**: the user's plan approval already counts as confirmation. Proceed directly to Step 1.
+  - For **every subsequent task**: show the user which task is next (e.g., "Next task: Task 2/3 — {description}") and ask for confirmation. Do NOT dispatch the implementer until the user says yes.
 
   **Step 1 — Implement:**
   ```
