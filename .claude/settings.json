@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm install*)",
+      "Bash(mkdir -p worklog/*)",
+      "Bash(node src/*)",
+      "Read(*)",
+      "Write(worklog/*)",
+      "Write(src/*)",
+      "Write(public/*)",
+      "Write(CHANGELOG.md)",
+      "Edit(worklog/*)",
+      "Edit(src/*)",
+      "Edit(public/*)"
+    ]
+  }
+}
