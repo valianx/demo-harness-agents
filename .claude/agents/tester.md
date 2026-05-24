@@ -64,3 +64,4 @@ describe('{feature}', () => {
 - One `it()` block per acceptance criterion. Keep it short.
 - Do not fix production code — only report failures.
 - Always run `npm test` at the end and report pass/fail counts.
+- **Frontend tasks:** do NOT write tests for frontend code (HTML, CSS, client-side JS). Only write tests for backend/API changes. If a task is frontend-only, report "No backend changes to test" and skip.
