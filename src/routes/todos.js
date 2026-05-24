@@ -6,7 +6,22 @@ const todos = [];
 let nextId = 1;
 
 router.get('/', (req, res) => {
-  res.json(todos);
+  const { status, keyword } = req.query;
+
+  let result = todos;
+
+  if (status === 'active') {
+    result = result.filter(t => t.completed === false);
+  } else if (status === 'completed') {
+    result = result.filter(t => t.completed === true);
+  }
+
+  if (keyword) {
+    const lower = keyword.toLowerCase();
+    result = result.filter(t => t.title.toLowerCase().includes(lower));
+  }
+
+  res.json(result);
 });
 
 router.get('/:id', (req, res) => {
