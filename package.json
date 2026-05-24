@@ -1,0 +1,13 @@
+{
+  "name": "demo-harness-agents",
+  "version": "1.0.0",
+  "description": "Simple Todo API to demonstrate harness agent orchestration",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test src/**/*.test.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
