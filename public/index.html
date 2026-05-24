@@ -13,6 +13,14 @@
       <input type="text" id="todo-input" placeholder="What needs to be done?" required>
       <button type="submit">Add</button>
     </form>
+    <div class="filter-bar">
+      <div class="status-buttons">
+        <button class="status-btn active" data-status="all">All</button>
+        <button class="status-btn" data-status="active">Active</button>
+        <button class="status-btn" data-status="completed">Completed</button>
+      </div>
+      <input type="text" id="filter-input" placeholder="Search todos...">
+    </div>
     <ul id="todo-list"></ul>
   </div>
   <script src="app.js"></script>

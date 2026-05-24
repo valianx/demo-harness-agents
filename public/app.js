@@ -2,8 +2,28 @@ const form = document.getElementById('todo-form');
 const input = document.getElementById('todo-input');
 const list = document.getElementById('todo-list');
 
+let activeStatus = 'all';
+let activeKeyword = '';
+
+// Status filter buttons
+document.querySelectorAll('.status-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeStatus = btn.dataset.status;
+    loadTodos();
+  });
+});
+
+// Keyword search input
+document.getElementById('filter-input').addEventListener('input', (e) => {
+  activeKeyword = e.target.value.trim();
+  loadTodos();
+});
+
 async function loadTodos() {
-  const res = await fetch('/api/todos');
+  const params = new URLSearchParams({ status: activeStatus, keyword: activeKeyword });
+  const res = await fetch(`/api/todos?${params}`);
   const todos = await res.json();
   list.innerHTML = '';
   todos.forEach(renderTodo);
