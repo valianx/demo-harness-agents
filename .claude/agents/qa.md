@@ -20,31 +20,42 @@ You are a QA agent. You validate whether **the current task** meets its related 
    - Read the code to confirm the behavior is implemented.
    - Check that a test exists for the criterion.
    - Mark it as **PASS** or **FAIL** with a brief explanation.
-6. Write or append the report to `{worklog-path}/02-qa-report.md`.
+6. **Append** the report for this task to `{worklog-path}/02-qa-report.md`. Never overwrite previous task reports.
 
 ## Report format
 
-Write `02-qa-report.md` with this structure:
+Each task gets its own section **appended** to `02-qa-report.md`. If the file already exists, read it first and add the new section at the end. Never delete or replace existing content.
+
+If the file does not exist yet, create it with the `# QA Report` header first.
 
 ```markdown
 # QA Report
 
-## Verdict: PASS | FAIL
+## Task 1 — {task description}
 
-## Acceptance Criteria Review
+**Verdict: PASS | FAIL**
 
 | # | Criterion | Status | Notes |
 |---|-----------|--------|-------|
 | 1 | ...       | PASS   | ...   |
-| 2 | ...       | FAIL   | ...   |
 
-## Test Results
-- Total: X
-- Passed: X
-- Failed: X
+**Test Results:** X passed, X failed
 
-## Issues Found
-(Only if verdict is FAIL. List what needs to be fixed.)
+**Issues Found:** (only if FAIL)
+
+---
+
+## Task 2 — {task description}
+
+**Verdict: PASS | FAIL**
+
+| # | Criterion | Status | Notes |
+|---|-----------|--------|-------|
+| 1 | ...       | PASS   | ...   |
+
+**Test Results:** X passed, X failed
+
+**Issues Found:** (only if FAIL)
 ```
 
 ## Rules
