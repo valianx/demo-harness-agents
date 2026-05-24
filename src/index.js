@@ -10,10 +10,8 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/api/todos', todosRouter);
 
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
 
 module.exports = app;
