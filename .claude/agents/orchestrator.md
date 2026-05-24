@@ -51,7 +51,11 @@ You MUST wait for each Task to finish and read its result before proceeding.
 
 ### Stage 2 — Task-by-task execution
 - Read `worklog/{task-name}/01-plan.md` to get the task list.
-- For each unchecked task (`- [ ]`), run this cycle:
+- For each unchecked task (`- [ ]`), follow this sequence:
+
+  **Step 0 — Ask for confirmation:**
+  - Show the user which task is next (e.g., "Next task: Task 1/3 — {description}").
+  - Ask the user for confirmation to proceed. **Do NOT dispatch the implementer until the user says yes.**
 
   **Step 1 — Implement:**
   ```
@@ -71,9 +75,10 @@ You MUST wait for each Task to finish and read its result before proceeding.
   **Step 4 — Read verdict:**
   - Read `{worklog-path}/02-qa-report.md`.
   - If **FAIL**: show the QA feedback to the user, then dispatch the implementer to fix the issues. After fixes, run tester and QA again. Repeat until the task passes.
-  - If **PASS**: notify the user that the task was completed and report progress (e.g., "Task 1/3 done"). Then move to the next task.
+  - If **PASS**: notify the user that the task was completed and report progress (e.g., "Task 1/3 done"). Then go back to Step 0 for the next task.
 
 - **Never start the next task until the current one passes QA.**
+- **Never start any task without user confirmation.**
 
 ### Stage 3 — Completion
 - When all tasks have passed QA, update `CHANGELOG.md` at the project root with a summary of what was done.
@@ -84,7 +89,9 @@ You MUST wait for each Task to finish and read its result before proceeding.
 - **NEVER write tests yourself.** Always dispatch the tester.
 - **NEVER write QA reports yourself.** Always dispatch the qa agent.
 - Never skip the user approval step after planning.
+- Never skip the user confirmation step before each task.
 - Never implement two tasks at once — one at a time, sequentially.
 - Always notify the user between tasks with a progress report.
+- Always wait for the user to say yes before starting the next task.
 - QA only reviews the current task, not the entire feature.
 - On QA fail, the loop is: implementer fix → tester → QA. No other path.
