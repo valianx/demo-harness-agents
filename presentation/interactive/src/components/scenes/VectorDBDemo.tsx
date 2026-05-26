@@ -19,7 +19,7 @@ const VECTOR_DOTS: Array<{ id: string; x: number; y: number; type: "process" | "
   { id: "d15", x: 350, y: 130, type: "pattern"   },
 ];
 
-const QUERY = { x: 210, y: 135 };
+const QUERY = { x: 200, y: 142 };
 const NEAREST = [4, 5, 8];
 
 const DOT_COLORS: Record<string, string> = {
@@ -78,17 +78,17 @@ export default function VectorDBDemo(): React.ReactElement {
           gsap.set(`.vd-line-${idx}`, { strokeDashoffset: len });
         });
 
-        tl.fromTo(".vd-dot", { opacity: 0, scale: 0 }, { opacity: 0.7, scale: 1, duration: 0.3, stagger: 0.05, transformOrigin: "center" });
+        tl.fromTo(".vd-dot", { opacity: 0, scale: 0 }, { opacity: 0.8, scale: 1, duration: 0.3, stagger: 0.05, transformOrigin: "center" });
         tl.fromTo(".vd-legend", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "+=0.3");
-        tl.fromTo(".vd-query", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)", transformOrigin: "center" }, "+=0.4");
+        tl.fromTo(".vd-query", { opacity: 0 }, { opacity: 1, duration: 0.4 }, "+=0.4");
         tl.fromTo(".vd-query-label", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "+=0.1");
 
         NEAREST.forEach((idx, i) => {
           tl.fromTo(`.vd-line-${idx}`, { strokeDashoffset: 200 }, { strokeDashoffset: 0, duration: 0.5, ease: "none" }, `>+=${i === 0 ? 0.3 : 0.2}`);
         });
 
-        tl.to(".vd-dot-nearest", { opacity: 1, scale: 1.5, duration: 0.35, stagger: 0.1, transformOrigin: "center" }, "+=0.2");
-        tl.to(".vd-dot-far", { opacity: 0.15, duration: 0.4 }, "<");
+        tl.to(".vd-dot-nearest", { opacity: 1, scale: 1.3, duration: 0.35, stagger: 0.1, transformOrigin: "center" }, "+=0.2");
+        tl.to(".vd-dot-far", { opacity: 0.3, duration: 0.4 }, "<");
         tl.fromTo(".vd-tooltip", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.45 }, "+=0.3");
       }
     }, rootRef);
@@ -195,6 +195,7 @@ export default function VectorDBDemo(): React.ReactElement {
             {[57, 114, 171].map((y) => (
               <line key={`gy-${y}`} x1="0" y1={y} x2="380" y2={y} stroke="#1e293b" strokeWidth="0.5" />
             ))}
+            {/* Similarity lines (bottom layer) */}
             {NEAREST.map((idx) => {
               const dot = VECTOR_DOTS[idx];
               const len = lineLen(QUERY.x, QUERY.y, dot.x, dot.y);
@@ -204,10 +205,12 @@ export default function VectorDBDemo(): React.ReactElement {
                   stroke="#fbbf24" strokeWidth="1.5" strokeDasharray={len} strokeDashoffset={len} opacity="0.7" />
               );
             })}
+            {/* All dots (on top of lines) */}
             {VECTOR_DOTS.map((dot, idx) => (
               <circle key={dot.id} className={`vd-dot ${NEAREST.includes(idx) ? "vd-dot-nearest" : "vd-dot-far"}`}
-                cx={dot.x} cy={dot.y} r="6" fill={DOT_COLORS[dot.type]} opacity="0" />
+                cx={dot.x} cy={dot.y} r="7" fill={DOT_COLORS[dot.type]} opacity="0" />
             ))}
+            {/* Query dot (on top of everything, at the intersection) */}
             <circle className="vd-query" cx={QUERY.x} cy={QUERY.y} r="8" fill="#fbbf24" opacity="0" />
             <text className="vd-query-label" x={QUERY.x + 12} y={QUERY.y - 10} fill="#fde68a" fontSize="9.5" fontWeight="600" opacity="0">query</text>
           </svg>
