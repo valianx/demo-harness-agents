@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-scene-bg text-scene-text font-sans m-0 p-0;
+    overflow: hidden;
+  }
+
+  #root {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@layer components {
+  /* React Flow overrides */
+  .react-flow__background {
+    background-color: theme("colors.scene.bg") !important;
+  }
+
+  .react-flow__node {
+    font-family: theme("fontFamily.sans");
+  }
+
+  .react-flow__handle {
+    opacity: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+  }
+
+  .react-flow__node-default,
+  .react-flow__node-input,
+  .react-flow__node-output {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .react-flow__node.highlighted {
+    @apply border-scene-accent ring-2 ring-scene-accent/30;
+    transition: all 0.3s ease;
+  }
+
+  .react-flow__edge-path {
+    stroke: theme("colors.scene.muted");
+    stroke-width: 2;
+  }
+
+  .react-flow__edge.animated .react-flow__edge-path {
+    stroke: theme("colors.scene.accent");
+    stroke-dasharray: 5;
+    animation: dash 1s linear infinite;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -10;
+    }
+  }
+
+  /* Navigation dots */
+  .nav-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-scene-muted/40 transition-all duration-300 cursor-pointer;
+  }
+
+  .nav-dot.active {
+    @apply bg-scene-accent w-8 rounded-full;
+  }
+
+  /* Scene transition */
+  .scene-enter {
+    @apply animate-fade-in;
+  }
+
+  /* Animated slide background — starry night */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; }
+    50%      { opacity: 0.8; }
+  }
+  .slide-bg-animated {
+    background: radial-gradient(ellipse at 50% 50%, #0c0e1a 0%, #08090f 50%, #050507 100%);
+  }
+  .slide-bg-animated .star {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: twinkle ease-in-out infinite;
+  }
+
+  /* Atom orbital animation — slide 1 only */
+  @keyframes orbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes orbit-reverse {
+    from { transform: rotate(360deg); }
+    to   { transform: rotate(0deg); }
+  }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%      { opacity: 0.9; transform: scale(1.08); }
+  }
+  .atom-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .atom-orbit {
+    position: absolute;
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 50%;
+  }
+  .atom-orbit-dashed {
+    position: absolute;
+    border: 1px dashed rgba(148, 163, 184, 0.1);
+    border-radius: 50%;
+  }
+  .atom-dot {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 6px currentColor;
+  }
+}
