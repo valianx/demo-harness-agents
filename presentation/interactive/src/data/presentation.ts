@@ -393,7 +393,16 @@ export const config: PresentationConfig = {
       `,
     },
 
-    // ─── Slide 10 — Pipeline completo con stages y agentes (FlowScene) ──
+    // ─── Knowledge Graph en acción ─────────────────────────────────────
+    {
+      id: "vector-db",
+      type: "animated",
+      title: "El Knowledge Graph en acción",
+      subtitle: "Cómo los insights de un task mejoran los tasks futuros",
+      component: "VectorDBDemo",
+    },
+
+    // ─── Pipeline completo con stages y agentes (FlowScene) ─────────
     {
       id: "pipeline-real",
       type: "flow",
@@ -737,7 +746,7 @@ export const config: PresentationConfig = {
           <div>
             <p class="text-xs font-mono text-scene-accent tracking-widest uppercase mb-1">09</p>
             <h2 class="text-3xl font-bold text-scene-text">Instalación en 30 segundos</h2>
-            <p class="text-scene-muted mt-1">Plugin marketplace o Go binary. Zero config manual.</p>
+            <p class="text-scene-muted mt-1">Plugin marketplace. Zero config manual.</p>
           </div>
 
           <div class="flex flex-col gap-3">
@@ -756,56 +765,13 @@ export const config: PresentationConfig = {
       `,
     },
 
-    // ─── Flujo de conocimiento + Demo Vector DB ─────────────────────
+    // ─── Cierre final ─────────────────────────────────────────────────
     {
-      id: "vector-db",
+      id: "gracias",
       type: "animated",
-      title: "El Knowledge Graph en acción",
-      subtitle: "Cómo los insights de un task mejoran los tasks futuros",
-      component: "VectorDBDemo",
-    },
-
-    // ─── Slide 14 — Cierre parte 2 ───────────────────────────────────
-    {
-      id: "cierre-2",
-      type: "slide",
       title: "",
-      content: `
-        ${animatedBg()}
-        <div class="relative z-10 flex flex-col gap-6 w-full max-w-3xl mx-auto">
-          <div>
-            <h2 class="text-3xl font-bold text-scene-text">Lo que construimos</h2>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="rounded-xl border border-scene-border bg-scene-surface p-5">
-              <p class="text-sm font-semibold text-scene-text mb-3">En esta presentación</p>
-              ${checkItem("Pipeline real con 20 agentes especializados")}
-              ${checkItem("3 gates humanos que mantienen el control")}
-              ${checkItem("6 pipelines adaptados al tipo de task")}
-              ${checkItem("Knowledge Graph que aprende con cada delivery")}
-              ${checkItem("Instalación plug-and-play para el equipo")}
-            </div>
-
-            <div class="rounded-xl border border-scene-accent/30 bg-scene-accent/5 p-5">
-              <p class="text-sm font-semibold text-scene-accent mb-3">A continuación — Demo en vivo</p>
-              <p class="text-scene-text font-semibold text-sm mb-2">
-                Vamos a ejecutar un task real con el harness
-              </p>
-              <p class="text-scene-muted text-sm leading-relaxed">
-                Van a ver el pipeline corriendo, los agentes interactuando,
-                y el workspace generándose en tiempo real.
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-center gap-2 text-scene-muted text-sm border border-scene-border rounded-full px-4 py-1.5 self-center">
-            <span>Mario Gutiérrez</span>
-            <span class="text-scene-border">·</span>
-            <span>Equipo Zippy</span>
-          </div>
-        </div>
-      `,
+      subtitle: "",
+      component: "GraciasAnimation",
     },
   ],
 };

@@ -11,6 +11,7 @@ interface AnimatedSceneProps {
 const ANIMATED_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.ReactElement>> = {
   WorkspaceAnimation: lazy(() => import("./scenes/WorkspaceAnimation")),
   VectorDBDemo: lazy(() => import("./scenes/VectorDBDemo")),
+  GraciasAnimation: lazy(() => import("./scenes/GraciasAnimation")),
 };
 
 /**
