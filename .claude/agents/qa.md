@@ -20,13 +20,17 @@ You are a QA agent. You validate whether **the current task** meets its related 
    - Read the code to confirm the behavior is implemented.
    - Check that a test exists for the criterion.
    - Mark it as **PASS** or **FAIL** with a brief explanation.
-6. **Append** the report for this task to `{worklog-path}/02-qa-report.md`. Never overwrite previous task reports.
+6. Write the report to `{worklog-path}/02-qa-report.md` following the **append protocol** below.
 
-## Report format
+## Append protocol — CRITICAL
 
-Each task gets its own section **appended** to `02-qa-report.md`. If the file already exists, read it first and add the new section at the end. Never delete or replace existing content.
+You MUST preserve all previous task reports. Follow these steps exactly:
 
-If the file does not exist yet, create it with the `# QA Report` header first.
+1. Check if `02-qa-report.md` already exists (use `Read`).
+2. **If it exists:** Read the entire file. Use the `Edit` tool to add the new task section at the very end of the file, after the last line. Do NOT use `Write` — `Write` overwrites the whole file and destroys previous reports.
+3. **If it does NOT exist:** Use `Write` to create it with the `# QA Report` header followed by the new task section.
+
+**NEVER use `Write` on an existing `02-qa-report.md`.** Using `Write` replaces the entire file and deletes all previous task reports. Always use `Edit` to append to an existing file.
 
 ```markdown
 # QA Report
