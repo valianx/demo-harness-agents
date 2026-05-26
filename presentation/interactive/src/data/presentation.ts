@@ -257,8 +257,8 @@ export const config: PresentationConfig = {
     {
       id: "workspace",
       type: "animated",
-      title: "El workspace documentado",
-      subtitle: "Cada feature deja trazabilidad en 3 etapas, versionada en git.",
+      title: "",
+      subtitle: "",
       component: "WorkspaceAnimation",
     },
 
@@ -397,8 +397,8 @@ export const config: PresentationConfig = {
     {
       id: "vector-db",
       type: "animated",
-      title: "El Knowledge Graph en acción",
-      subtitle: "Cómo los insights de un task mejoran los tasks futuros",
+      title: "",
+      subtitle: "",
       component: "VectorDBDemo",
     },
 

@@ -75,20 +75,25 @@ export function AnimatedScene({ scene }: AnimatedSceneProps) {
 
   const CustomComponent = ANIMATED_COMPONENTS[scene.component] ?? null;
 
+  const hasChrome = !!scene.title;
+
   return (
     <div className="relative w-full h-full flex flex-col">
       {/* Scene title */}
-      <div className="px-6 pt-14">
-        <h2 className="text-lg font-semibold text-scene-text">{scene.title}</h2>
-        {scene.subtitle && (
-          <p className="text-sm text-scene-muted mt-0.5">{scene.subtitle}</p>
-        )}
-      </div>
+      {hasChrome && (
+        <div className="px-6 pt-14">
+          <h2 className="text-lg font-semibold text-scene-text">{scene.title}</h2>
+          {scene.subtitle && (
+            <p className="text-sm text-scene-muted mt-0.5">{scene.subtitle}</p>
+          )}
+        </div>
+      )}
 
       {/* Animation container */}
       <div
         ref={containerRef}
-        className="flex-1 relative overflow-hidden mx-6 my-4 rounded-xl border border-scene-border bg-scene-surface"
+        className={hasChrome ? "flex-1 relative overflow-hidden mx-6 my-4 rounded-xl border border-scene-border" : "flex-1 relative overflow-hidden"}
+        style={hasChrome ? { background: "radial-gradient(ellipse at 50% 50%, #0c0e1a 0%, #08090f 50%, #050507 100%)" } : undefined}
         data-scene-id={scene.id}
       >
         {CustomComponent ? (
@@ -109,7 +114,7 @@ export function AnimatedScene({ scene }: AnimatedSceneProps) {
       </div>
 
       {/* Transport controls */}
-      <div className="flex items-center gap-4 px-6 pb-14">
+      {hasChrome && <div className="flex items-center gap-4 px-6 pb-14">
         <button
           onClick={togglePlay}
           className="p-2 rounded-lg bg-scene-surface border border-scene-border text-scene-text hover:bg-scene-border transition-colors"
@@ -145,7 +150,7 @@ export function AnimatedScene({ scene }: AnimatedSceneProps) {
             style={{ width: `${progress * 100}%` }}
           />
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

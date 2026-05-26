@@ -58,12 +58,12 @@ export default function VectorDBDemo(): React.ReactElement {
         tl.fromTo(".kf-task-a", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45 });
         tl.fromTo(".kf-delivery", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4 }, "+=0.1");
         tl.fromTo(".kf-arrow-left", { strokeDashoffset: 165 }, { strokeDashoffset: 0, duration: 0.55, ease: "none" }, "+=0.15");
-        tl.fromTo(".kf-dot-left", { opacity: 1, cx: 135, cy: 80 }, { cx: 285, cy: 80, duration: 0.55, ease: "none" }, "<");
+        tl.fromTo(".kf-dot-left", { opacity: 1, cx: 160, cy: 70 }, { cx: 245, cy: 70, duration: 0.55, ease: "none" }, "<");
         tl.fromTo(".kf-kg", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, transformOrigin: "center" });
         tl.to(".kf-kg", { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, transformOrigin: "center" });
         tl.fromTo(".kf-kg-label", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "-=0.1");
         tl.fromTo(".kf-arrow-right", { strokeDashoffset: 165 }, { strokeDashoffset: 0, duration: 0.55, ease: "none" }, "+=0.2");
-        tl.fromTo(".kf-dot-right", { opacity: 1, cx: 410, cy: 80 }, { cx: 555, cy: 80, duration: 0.55, ease: "none" }, "<");
+        tl.fromTo(".kf-dot-right", { opacity: 1, cx: 455, cy: 70 }, { cx: 540, cy: 70, duration: 0.55, ease: "none" }, "<");
         tl.fromTo(".kf-architect", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35 }, "+=0.1");
         tl.fromTo(".kf-task-b", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.35 }, "+=0.05");
         tl.fromTo(".kf-caption", { opacity: 0 }, { opacity: 1, duration: 0.4 }, "+=0.2");
@@ -109,7 +109,7 @@ export default function VectorDBDemo(): React.ReactElement {
   }
 
   return (
-    <div ref={rootRef} className="w-full h-full flex flex-col items-center justify-center px-6 py-4 relative">
+    <div ref={rootRef} className="w-full h-full flex flex-col items-center justify-center px-6 py-4 relative" style={{ background: "radial-gradient(ellipse at 50% 50%, #0c0e1a 0%, #08090f 50%, #050507 100%)" }}>
       {/* Stage controls */}
       <div className="absolute top-14 right-5 z-40 flex items-center gap-2 bg-scene-bg/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-scene-border/30">
         {STAGES.map((s) => (
@@ -151,19 +151,19 @@ export default function VectorDBDemo(): React.ReactElement {
             <text x="60" y="102" textAnchor="middle" fill="#86efac" fontSize="11" fontWeight="600">Delivery Agent</text>
             <text x="60" y="118" textAnchor="middle" fill="#4ade80" fontSize="9.5">captura insight</text>
           </g>
-          {/* Arrow: Delivery → KG */}
-          <line className="kf-arrow-left" x1="130" y1="80" x2="295" y2="80" stroke="#3b82f6" strokeWidth="2" strokeDasharray="165" strokeDashoffset="165" markerEnd="url(#arrowBlue)" />
-          <circle className="kf-dot-left" cx="130" cy="80" r="4" fill="#3b82f6" opacity="0" />
           {/* KG */}
           <g className="kf-kg">
-            <circle cx="390" cy="80" r="50" fill="#1a1a2e" stroke="#6d28d9" strokeWidth="2" />
-            <text x="390" y="75" textAnchor="middle" fill="#a78bfa" fontSize="12" fontWeight="700">Knowledge</text>
-            <text x="390" y="91" textAnchor="middle" fill="#a78bfa" fontSize="12" fontWeight="700">Graph</text>
+            <circle cx="360" cy="70" r="50" fill="#1a1a2e" stroke="#6d28d9" strokeWidth="2" />
+            <text x="360" y="65" textAnchor="middle" fill="#a78bfa" fontSize="12" fontWeight="700">Knowledge</text>
+            <text x="360" y="81" textAnchor="middle" fill="#a78bfa" fontSize="12" fontWeight="700">Graph</text>
           </g>
           <g className="kf-kg-label" />
+          {/* Arrow: Delivery → KG */}
+          <line className="kf-arrow-left" x1="155" y1="70" x2="250" y2="70" stroke="#3b82f6" strokeWidth="2" strokeDasharray="165" strokeDashoffset="165" markerEnd="url(#arrowBlue)" />
+          <circle className="kf-dot-left" cx="130" cy="70" r="2.5" fill="#3b82f6" opacity="0" />
           {/* Arrow: KG → Architect */}
-          <line className="kf-arrow-right" x1="405" y1="80" x2="565" y2="80" stroke="#3b82f6" strokeWidth="2" strokeDasharray="165" strokeDashoffset="165" markerEnd="url(#arrowBlue)" />
-          <circle className="kf-dot-right" cx="405" cy="80" r="4" fill="#3b82f6" opacity="0" />
+          <line className="kf-arrow-right" x1="450" y1="70" x2="545" y2="70" stroke="#3b82f6" strokeWidth="2" strokeDasharray="165" strokeDashoffset="165" markerEnd="url(#arrowBlue)" />
+          <circle className="kf-dot-right" cx="450" cy="70" r="2.5" fill="#3b82f6" opacity="0" />
           {/* Task B */}
           <g className="kf-task-b">
             <rect x="570" y="10" width="120" height="50" rx="10" fill="#14291a" stroke="#166534" strokeWidth="1.5" />
@@ -234,6 +234,27 @@ export default function VectorDBDemo(): React.ReactElement {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Atom logo */}
+      <div className="absolute bottom-8 right-8 pointer-events-none" style={{ width: 220, height: 220 }}>
+        <svg viewBox="0 0 200 200" className="w-full h-full" style={{ overflow: "visible" }}>
+          <defs>
+            <radialGradient id="vd-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="50" fill="url(#vd-glow)" style={{ animation: "glow-pulse 4s ease-in-out infinite" }} />
+          <circle cx="100" cy="100" r="8" fill="#f59e0b" opacity="0.9" />
+          <circle cx="100" cy="100" r="4" fill="#fbbf24" />
+          <ellipse cx="100" cy="100" rx="70" ry="30" fill="none" stroke="rgba(148,163,184,0.2)" strokeWidth="0.8" />
+          <ellipse cx="100" cy="100" rx="65" ry="28" fill="none" stroke="rgba(148,163,184,0.15)" strokeWidth="0.8" transform="rotate(60 100 100)" />
+          <ellipse cx="100" cy="100" rx="75" ry="32" fill="none" stroke="rgba(148,163,184,0.15)" strokeWidth="0.8" transform="rotate(-60 100 100)" />
+          <g style={{ animation: "orbit 8s linear infinite", transformOrigin: "100px 100px" }}><circle cx="170" cy="100" r="4" fill="#94a3b8" opacity="0.8" /></g>
+          <g style={{ animation: "orbit 12s linear infinite", transformOrigin: "100px 100px", transform: "rotate(60deg)" }}><circle cx="165" cy="100" r="3" fill="#818cf8" opacity="0.7" /></g>
+          <g style={{ animation: "orbit-reverse 10s linear infinite", transformOrigin: "100px 100px", transform: "rotate(-60deg)" }}><circle cx="175" cy="100" r="3.5" fill="#94a3b8" opacity="0.7" /></g>
+        </svg>
       </div>
     </div>
   );

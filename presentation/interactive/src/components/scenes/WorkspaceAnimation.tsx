@@ -30,7 +30,11 @@ export default function WorkspaceAnimation(): React.ReactElement {
   }, []);
 
   return (
-    <div ref={rootRef} className="w-full h-full flex flex-col items-center justify-center gap-5 px-8 py-4">
+    <div ref={rootRef} className="w-full h-full flex flex-col items-center justify-center gap-5 px-8 py-4" style={{ background: "radial-gradient(ellipse at 50% 50%, #0c0e1a 0%, #08090f 50%, #050507 100%)" }}>
+      <div className="text-center mb-2">
+        <h2 className="text-lg font-semibold text-scene-text">El workspace documentado</h2>
+        <p className="text-sm text-scene-muted mt-0.5">Cada feature deja trazabilidad en 3 etapas, versionada en git.</p>
+      </div>
       <div className="flex items-start gap-6 w-full max-w-5xl">
         {/* Project tree */}
         <div className="font-mono text-xs shrink-0 bg-scene-bg border border-scene-border rounded-xl p-4 min-w-[280px]">
@@ -81,6 +85,29 @@ export default function WorkspaceAnimation(): React.ReactElement {
       <p className="ws-tagline text-sm text-scene-muted border border-scene-border rounded-full px-5 py-1.5 font-mono tracking-wide">
         Auditable · reproducible · revisable en PR
       </p>
+
+      {/* Atom logo */}
+      <div className="absolute bottom-8 right-8 pointer-events-none" style={{ width: 220, height: 220 }}>
+        <svg viewBox="0 0 200 200" className="w-full h-full" style={{ overflow: "visible" }}>
+          <defs>
+            <radialGradient id="ws-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="50" fill="url(#ws-glow)" style={{ animation: "glow-pulse 4s ease-in-out infinite" }} />
+          <circle cx="100" cy="100" r="8" fill="#f59e0b" opacity="0.9" />
+          <circle cx="100" cy="100" r="4" fill="#fbbf24" />
+          <ellipse cx="100" cy="100" rx="70" ry="30" fill="none" stroke="rgba(148,163,184,0.2)" strokeWidth="0.8" />
+          <ellipse cx="100" cy="100" rx="65" ry="28" fill="none" stroke="rgba(148,163,184,0.15)" strokeWidth="0.8" transform="rotate(60 100 100)" />
+          <ellipse cx="100" cy="100" rx="75" ry="32" fill="none" stroke="rgba(148,163,184,0.15)" strokeWidth="0.8" transform="rotate(-60 100 100)" />
+          <ellipse cx="100" cy="100" rx="60" ry="25" fill="none" stroke="rgba(148,163,184,0.1)" strokeWidth="0.8" strokeDasharray="4 3" transform="rotate(120 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="35" fill="none" stroke="rgba(148,163,184,0.08)" strokeWidth="0.8" strokeDasharray="6 4" transform="rotate(-30 100 100)" />
+          <g style={{ animation: "orbit 8s linear infinite", transformOrigin: "100px 100px" }}><circle cx="170" cy="100" r="4" fill="#94a3b8" opacity="0.8" /></g>
+          <g style={{ animation: "orbit 12s linear infinite", transformOrigin: "100px 100px", transform: "rotate(60deg)" }}><circle cx="165" cy="100" r="3" fill="#818cf8" opacity="0.7" /></g>
+          <g style={{ animation: "orbit-reverse 10s linear infinite", transformOrigin: "100px 100px", transform: "rotate(-60deg)" }}><circle cx="175" cy="100" r="3.5" fill="#94a3b8" opacity="0.7" /></g>
+        </svg>
+      </div>
     </div>
   );
 }
