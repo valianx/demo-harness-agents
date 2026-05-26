@@ -38,19 +38,19 @@ You MUST wait for each Task to finish and read its result before proceeding.
 ## Your responsibilities
 
 ### Setup
-- Create the folder `worklog/{task-name}/` at the project root using Bash. Use a short kebab-case slug for the task name.
+- Create the folder `workspaces/{task-name}/` at the project root using Bash. Use a short kebab-case slug for the task name.
 
 ### Stage 1 — Planning
 - Dispatch the planner:
   ```
-  Task(subagent_type="planner", prompt="Create a work plan for the following task: {description}. Write the plan to {worklog-path}/01-plan.md")
+  Task(subagent_type="planner", prompt="Create a work plan for the following task: {description}. Write the plan to {workspace-path}/01-plan.md")
   ```
-- Once the planner finishes, read `{worklog-path}/01-plan.md` and show the user a summary.
+- Once the planner finishes, read `{workspace-path}/01-plan.md` and show the user a summary.
 - Ask the user for approval. **Do NOT proceed until the user explicitly says yes.**
 - If the user requests changes, dispatch the planner again with the feedback.
 
 ### Stage 2 — Task-by-task execution
-- Read `worklog/{task-name}/01-plan.md` to get the task list.
+- Read `workspaces/{task-name}/01-plan.md` to get the task list.
 - For each unchecked task (`- [ ]`), follow this sequence:
 
   **Step 0 — Ask for confirmation (skip for the first task):**
@@ -59,21 +59,21 @@ You MUST wait for each Task to finish and read its result before proceeding.
 
   **Step 1 — Implement:**
   ```
-  Task(subagent_type="implementer", prompt="Implement the following task: '{task description}'. Worklog path: {worklog-path}. Read 01-plan.md for full context. Mark the task as [x] when done.")
+  Task(subagent_type="implementer", prompt="Implement the following task: '{task description}'. Worklog path: {workspace-path}. Read 01-plan.md for full context. Mark the task as [x] when done.")
   ```
 
   **Step 2 — Test:**
   ```
-  Task(subagent_type="tester", prompt="Write and run unit tests for the task just implemented: '{task description}'. Worklog path: {worklog-path}. Read 01-plan.md for context.")
+  Task(subagent_type="tester", prompt="Write and run unit tests for the task just implemented: '{task description}'. Worklog path: {workspace-path}. Read 01-plan.md for context.")
   ```
 
   **Step 3 — QA:**
   ```
-  Task(subagent_type="qa", prompt="Validate the following task: '{task description}'. Worklog path: {worklog-path}. Only check the acceptance criteria related to this task. Write the report to {worklog-path}/02-qa-report.md")
+  Task(subagent_type="qa", prompt="Validate the following task: '{task description}'. Worklog path: {workspace-path}. Only check the acceptance criteria related to this task. Write the report to {workspace-path}/02-qa-report.md")
   ```
 
   **Step 4 — Read verdict:**
-  - Read `{worklog-path}/02-qa-report.md`.
+  - Read `{workspace-path}/02-qa-report.md`.
   - If **FAIL**: show the QA feedback to the user, then dispatch the implementer to fix the issues. After fixes, run tester and QA again. Repeat until the task passes.
   - If **PASS**: notify the user that the task was completed and report progress (e.g., "Task 1/3 done"). Then go back to Step 0 for the next task.
 

@@ -12,7 +12,7 @@ You are a planner agent. Given a development task, you produce a single structur
 
 ## Output
 
-Write the file `{worklog-path}/01-plan.md` with the following sections:
+Write the file `{workspace-path}/01-plan.md` with the following sections:
 
 ### 1. User Story
 Write a concise user story in the format:

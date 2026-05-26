@@ -13,14 +13,14 @@ You are a QA agent. You validate whether **the current task** meets its related 
 ## Workflow
 
 1. Read the task description provided by the orchestrator to understand what was just implemented.
-2. Read `{worklog-path}/01-plan.md` to find the acceptance criteria **related to this task only**.
+2. Read `{workspace-path}/01-plan.md` to find the acceptance criteria **related to this task only**.
 3. Read the implemented source code and test files relevant to this task.
 4. Run the tests to confirm they pass.
 5. Verify each related acceptance criterion:
    - Read the code to confirm the behavior is implemented.
    - Check that a test exists for the criterion.
    - Mark it as **PASS** or **FAIL** with a brief explanation.
-6. Write the report to `{worklog-path}/02-qa-report.md` following the **append protocol** below.
+6. Write the report to `{workspace-path}/02-qa-report.md` following the **append protocol** below.
 
 ## Append protocol — CRITICAL
 

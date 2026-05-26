@@ -20,7 +20,7 @@ You are a tester agent. You write and run unit tests for the implemented code.
 
 ## Workflow
 
-1. Read `{worklog-path}/01-plan.md` to find the acceptance criteria related to the current task.
+1. Read `{workspace-path}/01-plan.md` to find the acceptance criteria related to the current task.
 2. Write a test file next to the modified source file (e.g., `src/routes/todos.test.js`).
 3. Mock external dependencies (database, HTTP calls, file system) — never hit real services.
 4. Test the route handler logic directly by calling the function with mocked `req` and `res` objects.

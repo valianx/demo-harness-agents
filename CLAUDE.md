@@ -20,10 +20,10 @@ A Todo API (Express.js, in-memory store) used to demonstrate harness agent orche
 Five agents in `.claude/agents/`, all using `sonnet` with `medium` effort:
 
 - **orchestrator** — entry point. Receives a task, coordinates the pipeline, enforces user approval after planning.
-- **planner** — generates `worklog/{task}/01-plan.md` with user story, acceptance criteria, task list, and implementation plan.
+- **planner** — generates `workspaces/{task}/01-plan.md` with user story, acceptance criteria, task list, and implementation plan.
 - **implementer** — implements one task at a time, marks it `[x]` in `01-plan.md`, reports back.
 - **tester** — writes and runs unit tests for the current task.
-- **qa** — validates only the current task against its acceptance criteria. Writes `worklog/{task}/02-qa-report.md`.
+- **qa** — validates only the current task against its acceptance criteria. Writes `workspaces/{task}/02-qa-report.md`.
 
 ## Pipeline flow
 
@@ -35,7 +35,7 @@ Five agents in `.claude/agents/`, all using `sonnet` with `medium` effort:
 
 ## Conventions
 
-- Worklog folder: `worklog/{feature-name}/`
+- Workspace folder: `workspaces/{feature-name}/`
 - Each feature must have at least 2 sub-tasks in the plan
 - QA only reviews the current task, not the whole feature
 - Implementer must report completion before moving to the next task
