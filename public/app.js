@@ -3,6 +3,7 @@ const input = document.getElementById('todo-input');
 const list = document.getElementById('todo-list');
 const statusFilter = document.getElementById('status-filter');
 const searchInput = document.getElementById('search-input');
+const emptyMessage = document.getElementById('empty-message');
 
 async function loadTodos() {
   const params = new URLSearchParams();
@@ -19,6 +20,7 @@ async function loadTodos() {
   const todos = await res.json();
   list.innerHTML = '';
   todos.forEach(renderTodo);
+  emptyMessage.style.display = todos.length === 0 ? 'block' : 'none';
 }
 
 function renderTodo(todo) {
