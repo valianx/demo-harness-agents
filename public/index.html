@@ -13,6 +13,14 @@
       <input type="text" id="todo-input" placeholder="What needs to be done?" required>
       <button type="submit">Add</button>
     </form>
+    <div id="filters">
+      <select id="status-filter">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+      </select>
+      <input type="text" id="search-input" placeholder="Search todos...">
+    </div>
     <ul id="todo-list"></ul>
   </div>
   <script src="app.js"></script>

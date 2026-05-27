@@ -1,9 +1,21 @@
 const form = document.getElementById('todo-form');
 const input = document.getElementById('todo-input');
 const list = document.getElementById('todo-list');
+const statusFilter = document.getElementById('status-filter');
+const searchInput = document.getElementById('search-input');
 
 async function loadTodos() {
-  const res = await fetch('/api/todos');
+  const params = new URLSearchParams();
+  const status = statusFilter.value;
+  const q = searchInput.value.trim();
+
+  if (status !== 'all') params.set('status', status);
+  if (q) params.set('q', q);
+
+  const query = params.toString();
+  const url = query ? `/api/todos?${query}` : '/api/todos';
+
+  const res = await fetch(url);
   const todos = await res.json();
   list.innerHTML = '';
   todos.forEach(renderTodo);
@@ -48,5 +60,8 @@ async function deleteTodo(id) {
   await fetch(`/api/todos/${id}`, { method: 'DELETE' });
   loadTodos();
 }
+
+statusFilter.addEventListener('change', loadTodos);
+searchInput.addEventListener('input', loadTodos);
 
 loadTodos();
